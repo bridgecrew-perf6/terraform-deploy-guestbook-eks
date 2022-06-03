@@ -22,7 +22,7 @@ terraform {
 
 data "tfe_outputs" "eks" {
     organization = "cxpm-training"
-    workspaces = "cl-22-terraform-aws-eks"
+    workspace = "cl-22-terraform-aws-eks"
 }
 
 # Retrieve EKS cluster information
