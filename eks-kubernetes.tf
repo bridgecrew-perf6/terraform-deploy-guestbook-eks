@@ -13,11 +13,16 @@ terraform {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "local"
+  #backend = "local"
+  backend = "cloud"
 
-  config = {
-    path = "../terraform-aws-eks-workshop/src/terraform.tfstate"
-  }
+ config = {
+   # path = "../terraform-aws-eks-workshop/src/terraform.tfstate"
+    organization = "cxpm-training"
+    workspaces = {
+      name = "cl-22-terraform-aws-eks"
+    }
+ }
 }
 
 # Retrieve EKS cluster information
