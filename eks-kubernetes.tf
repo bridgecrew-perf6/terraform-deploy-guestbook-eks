@@ -33,12 +33,12 @@ provider "aws" {
 
 data "aws_eks_cluster" "cluster" {
   #name = data.terraform_remote_state.eks.outputs.cluster_id
-  name = data.tfe_outputs.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.values.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
   #name = data.terraform_remote_state.eks.outputs.cluster_id
-  name = data.tfe_outputs.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.values.cluster_id
 }
 
 
