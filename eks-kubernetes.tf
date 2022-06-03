@@ -26,10 +26,12 @@ data "tfe_outputs" "eks" {
 }
 
 # Retrieve EKS cluster information
-#provider "aws" {
- # region = data.terraform_remote_state.eks.outputs.region
-#  region = data.tfe_outputs.eks.values.region
-#}
+provider "aws" {
+  #region = data.terraform_remote_state.eks.outputs.region
+  region = data.tfe_outputs.eks.values.region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
+}
 
 data "aws_eks_cluster" "cluster" {
   #name = data.terraform_remote_state.eks.outputs.cluster_id
