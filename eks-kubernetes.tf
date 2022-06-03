@@ -28,7 +28,7 @@ data "tfe_outputs" "eks" {
 # Retrieve EKS cluster information
 provider "aws" {
  # region = data.terraform_remote_state.eks.outputs.region
-  region = data.tfe_outputs.eks.outputs.region
+  region = data.tfe_outputs.eks.values.region
 }
 
 data "aws_eks_cluster" "cluster" {
