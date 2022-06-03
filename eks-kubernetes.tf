@@ -12,32 +12,35 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "eks" {
-  #backend = "local"
-  backend = "cloud"
+#data "terraform_remote_state" "eks" {
+ # backend = "local"
 
- config = {
-   # path = "../terraform-aws-eks-workshop/src/terraform.tfstate"
+ #config = {
+ #  path = "../terraform-aws-eks-workshop/src/terraform.tfstate"   
+ #}
+#}
+
+data "tfe_outputs" "eks" {
     organization = "cxpm-training"
     workspaces = {
       name = "cl-22-terraform-aws-eks"
     }
- }
 }
 
 # Retrieve EKS cluster information
 provider "aws" {
-  region = data.terraform_remote_state.eks.outputs.region
-#  access_key = var.aws_access_key
-#  secret_key = var.aws_secret_key
+ # region = data.terraform_remote_state.eks.outputs.region
+  region = data.tfe_outputs.eks.outputs.region
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = data.terraform_remote_state.eks.outputs.cluster_id
+  #name = data.terraform_remote_state.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.outputs.cluster_id
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = data.terraform_remote_state.eks.outputs.cluster_id
+  #name = data.terraform_remote_state.eks.outputs.cluster_id
+  name = data.tfe_outputs.eks.outputs.cluster_id
 }
 
 
