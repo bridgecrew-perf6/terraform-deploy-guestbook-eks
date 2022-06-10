@@ -7,3 +7,8 @@ variable "aws_secret_key" {
   description = "AWS secret key"
   type        = string
 }
+
+variable "eks_cluster_workspace_name" {
+  description = "EKS Cluster workspace name"
+  type        = string
+}
